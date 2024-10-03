@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+<body>
+    <!-- <h1>YOLOv9e WebSocket St bream</h1> -->
+    <img id="video-frame" src="" alt="Video Stream" style="width: 640px; height: 480px;" />
+
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+
+    <script>
+        const videoFrame = document.getElementById('video-frame');
+        const socket = io('http://localhost:5501');
+
+        socket.on('video_frame', function(frameBase64) {
+            console.log("Received frame");
+            videoFrame.src = 'data:image/jpeg;base64,' + frameBase64;
+        });
+    </script>
+</body>
+</html>
